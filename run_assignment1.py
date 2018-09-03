@@ -61,8 +61,8 @@ out_prefix = args.out_prefix  # Prefix to output filename
 #with open("/home/sourabhbalgi/ds222/assignment-1/DBPedia.small/small_train.txt") as f:
 #with open("/home/sourabhbalgi/ds222/assignment-1/DBPedia.full/full_train.txt") as f:
 print(f'\nExtracting data from  "{dataset_path}{dataset_size}/{dataset_size}_train.txt" ...')
-#with open(dataset_path + dataset_size + "/" + dataset_size + "_train.txt") as f:
-with open("./dum.txt") as f:
+with open(dataset_path + dataset_size + "/" + dataset_size + "_train.txt") as f:
+#with open("./in_map1.txt") as f:
         raw_data = f.readlines()
 
 trn_label_full = [x.strip().split(' \t')[0].replace('\s*', '').split(',') for x in raw_data[0:]]  # first 3 lines are headers
