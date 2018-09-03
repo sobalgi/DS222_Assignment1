@@ -20,14 +20,18 @@ from operator import itemgetter
 import json
 from tqdm import tqdm
 import pandas as pd
-from logger import Logger
+import time
+from datetime import datetime
 
-# from argparse import ArgumentParser
-# parser = ArgumentParser()
-# parser.add_argument('--dataset_size', default='save',
-#                     help='Size of dataset (full, small ,verysmall)')
-# parser.add_argument('--dataset_path', type=int, default=128,
-#                     help='Batch Size')
+from argparse import ArgumentParser
+parser = ArgumentParser()
+parser.add_argument('--dataset_size', default='verysmall',
+                    help='Size of dataset (full, small ,verysmall)')
+parser.add_argument('--dataset_path', default='../../ds222/assignment-1/DBPedia.',
+                    help='Path to dataset folder without dataset size suffix')
+parser.add_argument('--out_prefix', default='final_',
+                    help='Prefix to output filename')
+
 # parser.add_argument('--lr', type=float, default=0.01,
 #                     help='Learning Rate')
 # parser.add_argument('--decay', type=float, default=0.95,
@@ -40,23 +44,29 @@ from logger import Logger
 #                     help='Fast debugging mode.')
 # parser.add_argument('--hard_reload', action='store_true',
 #                     help='Pre-processing will be done from scratch.')
-# args = parser.parse_args()
+args = parser.parse_args()
+
+datestring = datetime.strftime(datetime.now(), '%Y%m%d%H%M%S')  # to suffix output files for dates
 
 # In[2]:
-
+start_time = time.time()
 
 # Read train data and label
-dataset_size = "full"  # full, small ,verysmall
-dataset_path = "../assignment-1/DBPedia."  # Path to dataset folder
+#dataset_size = "full"  # full, small ,verysmall
+#dataset_path = "../../ds222/assignment-1/DBPedia."  # Path to dataset folder
+dataset_size = args.dataset_size  # full, small ,verysmall
+dataset_path = args.dataset_path  # Path to dataset folder
+out_prefix = args.out_prefix  # Prefix to output filename
 #with open("/home/sourabhbalgi/ds222/assignment-1/DBPedia.verysmall/verysmall_train.txt") as f:
 #with open("/home/sourabhbalgi/ds222/assignment-1/DBPedia.small/small_train.txt") as f:
 #with open("/home/sourabhbalgi/ds222/assignment-1/DBPedia.full/full_train.txt") as f:
 print(f'\nExtracting data from  "{dataset_path}{dataset_size}/{dataset_size}_train.txt" ...')
-with open(dataset_path + dataset_size + "/" + dataset_size + "_train.txt") as f:
-    raw_data = f.readlines()
+#with open(dataset_path + dataset_size + "/" + dataset_size + "_train.txt") as f:
+with open("./dum.txt") as f:
+        raw_data = f.readlines()
 
-trn_label_full = [x.strip().split(' \t')[0].replace('\s*', '').split(',') for x in raw_data[3:]]  # first 3 lines are headers
-trn_data_full = [x.strip().split(' \t')[1] for x in raw_data[3:]]  # first 3 lines are headers
+trn_label_full = [x.strip().split(' \t')[0].replace('\s*', '').split(',') for x in raw_data[0:]]  # first 3 lines are headers
+trn_data_full = [x.strip().split(' \t')[1] for x in raw_data[0:]]  # first 3 lines are headers
 
 '''
 #with open("/home/sourabhbalgi/ds222/assignment-1/DBPedia.full/full_train.txt") as f:
@@ -97,9 +107,9 @@ for idx,label in enumerate(tqdm(one_hot.classes_)):
     dict_label2idx[label] = idx
     dict_idx2label[idx] = label
 
-dict_label2idx['American_drama_films']  # 'American_drama_films' : 1
-dict_idx2label[1]  # 1 : 'American_drama_films'
-dict_idx2label
+#dict_label2idx['American_drama_films']  # 'American_drama_films' : 1
+#dict_idx2label[1]  # 1 : 'American_drama_films'
+#dict_idx2label
 
 
 # In[ ]:
@@ -123,6 +133,7 @@ print(f'\nPreprocessing (stemming, stopword removal, tokenization) train data ..
 
 # String preprocessing (stemming, stopword removal, tokenization)
 ps = PorterStemmer()  # Porter Stemmer from NLTK
+stop_words = set(stopwords.words('english'))  # remove stopwords in english
 
 tokenised_data_full = []
 # data preprocessing 
@@ -135,7 +146,6 @@ for data in tqdm(trn_data_full):
     data_str = data_str.strip()  # replace multiple spaces
 
     # tokenize, remove stopwords and stem
-    stop_words = set(stopwords.words('english'))  # remove stopwords in english
 
     # tokenize
     words = word_tokenize(data_str)
@@ -147,7 +157,7 @@ for data in tqdm(trn_data_full):
     stemmed_words = list()
     for word in filtered_words:
         stemmed_words.append(ps.stem(word))
-    
+
     tokenised_data_full.append(stemmed_words)
 
 
@@ -203,9 +213,9 @@ for label_ix in tqdm(range(len(dict_label2idx))):
 
 # Save JSON file with counts for each class
 #word_counters_json_enc = json.dumps(word_counters_json)
-with open(dataset_path + dataset_size + "/" + dataset_size + "_wordclass_counts.json","w") as f:
+with open(dataset_path + dataset_size + "/" + out_prefix + dataset_size + "_wordclass_counts.json", "w") as f:
     f.write(json.dumps(word_counters_json))
-    print(f'\nSaved "{dataset_path}{dataset_size}/{dataset_size}_wordclass_counts.json"')
+    print(f'\nSaved "{dataset_path}{dataset_size}/{out_prefix}{dataset_size}_wordclass_counts.json"')
 
 # Store mappings as seperate JSON file
 mappings = {}
@@ -215,9 +225,9 @@ mappings['dict_idx2vocab'] = dict_idx2vocab
 mappings['dict_vocab2idx'] = dict_vocab2idx
 
 #mappings_enc = json.dumps(mappings)
-with open(dataset_path + dataset_size + "/" + dataset_size + "_mappings.json","w") as f:
+with open(out_prefix + dataset_size + "_mappings.json", "w") as f:
     f.write(json.dumps(mappings))
-    print(f'\nSaved "{dataset_path}{dataset_size}/{dataset_size}_mappings.json"')
+    print(f'\nSaved "{out_prefix}{dataset_size}_mappings.json"')
 
 # In[ ]:
 
@@ -253,12 +263,12 @@ for trn_idx, stemmed_words in enumerate(tqdm(tokenised_data_full)):
     if trn_predicted_label[trn_idx] in trn_label_full[trn_idx]:
         trn_accuracy_count += 1
 
-trn_accuracy_count = trn_accuracy_count / (trn_idx + 1)
-print(f'\nTraining Accuracy on {dataset_size} dataset : {trn_accuracy_count}')
+trn_accuracy = trn_accuracy_count / (trn_idx + 1)
+print(f'\nTraining Accuracy on {dataset_size} dataset : {trn_accuracy}')
 
 trn_predicted_label_df = pd.DataFrame(trn_predicted_label)
-trn_predicted_label_df.to_csv(dataset_path + dataset_size + "/" + dataset_size + "_dev_pred_labels.txt", ',', index=False)
-print(f'\nSaved predicted labels for training data in "{dataset_path}{dataset_size}/{dataset_size}_trn_pred_labels.txt"')
+trn_predicted_label_df.to_csv(out_prefix + dataset_size + "_dev_pred_labels.txt", ',', index=False)
+print(f'\nSaved predicted labels for training data in "{out_prefix}{dataset_size}_trn_pred_labels.txt"')
 
 
 # In[ ]:
@@ -305,7 +315,6 @@ for dev_idx,data in enumerate(tqdm(dev_data_full)):
     data_str = data_str.strip()  # replace multiple spaces
 
     # tokenize, remove stopwords and stem
-    stop_words = set(stopwords.words('english'))
 
     # tokenize
     words = word_tokenize(data_str)
@@ -346,8 +355,8 @@ print(f'\nDevelopment Accuracy on {dataset_size} dataset : {dev_accuracy}')
 
 # Save predicted labels on development data
 dev_predicted_label_df = pd.DataFrame(dev_predicted_label)
-dev_predicted_label_df.to_csv(dataset_path + dataset_size + "/" + dataset_size + "_dev_pred_labels.txt", ',', index=False)
-print(f'\nSaved predicted labels for development data in "{dataset_path}{dataset_size}/{dataset_size}_dev_pred_labels.txt"')
+dev_predicted_label_df.to_csv(out_prefix + dataset_size + "_dev_pred_labels.txt", ',', index=False)
+print(f'\nSaved predicted labels for development data in "{out_prefix}{dataset_size}_dev_pred_labels.txt"')
 
 
 # In[ ]:
@@ -393,7 +402,6 @@ for tst_idx,data in enumerate(tqdm(tst_data_full)):
     data_str = data_str.strip()  # replace multiple spaces
 
     # tokenize, remove stopwords and stem
-    stop_words = set(stopwords.words('english'))
 
     # tokenize
     words = word_tokenize(data_str)
@@ -435,10 +443,13 @@ print(f'\nTest Accuracy on {dataset_size} dataset : {tst_accuracy}')
 
 # Save predicted test labels
 tst_predicted_label_df = pd.DataFrame(tst_predicted_label)
-tst_predicted_label_df.to_csv(dataset_path + dataset_size + "/" + dataset_size + "_tst_pred_labels.txt", sep=',', index=False)
-print(f'\nSaved predicted labels for test data in "{dataset_path}{dataset_size}/{dataset_size}_tst_pred_labels.txt"')
+tst_predicted_label_df.to_csv(out_prefix + dataset_size + "_tst_pred_labels.txt", sep=',', index=False)
+print(f'\nSaved predicted labels for test data in "{out_prefix}{dataset_size}_tst_pred_labels.txt"')
 
 # Save prediction accuracies
-accuracy_df = pd.DataFrame({'Train' : trn_accuracy_count, 'Development' : dev_accuracy, 'Test' : tst_accuracy})
-accuracy_df.to_csv(dataset_path + dataset_size + "/" + dataset_size + "_accuracy.log", sep=',', index=False)
-print(f'\nSaved model accuracies for {dataset_size} in "{dataset_path}{dataset_size}/{dataset_size}__accuracy.log"')
+accuracy_df = pd.DataFrame({'Train' : [trn_accuracy], 'Development' : [dev_accuracy], 'Test' : [tst_accuracy]})
+accuracy_df.to_csv(out_prefix + dataset_size + "_" +  datestring + "_accuracy.log", sep=',', index=False)
+print(f'\nSaved model accuracies for {dataset_size} in "{out_prefix}{dataset_size}_{datestring}_accuracy.log"')
+
+end_time = time.time()
+print(f'{(end_time-start_time)//60} minutes, {(end_time-start_time)%60} seconds for complete run')
