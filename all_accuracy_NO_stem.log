@@ -1,0 +1,12 @@
+Training Accuracy on full dataset : 0.8562006381573439
+Development Accuracy on full dataset : 0.7240055940416952
+Test Accuracy on full dataset : 0.7075081683003267
+29.0 minutes, 24 seconds for complete run of full dataset.
+Training Accuracy on small dataset : 0.8503977299158022
+Development Accuracy on small dataset : 0.8659329664832416
+Test Accuracy on small dataset : 0.8670404485382459
+5.0 minutes, 20 seconds for complete run of small dataset.
+Training Accuracy on verysmall dataset : 0.8796799085452986
+Development Accuracy on verysmall dataset : 0.8948948948948949
+Test Accuracy on verysmall dataset : 0.884435537742151
+3.0 minutes, 8 seconds for complete run of verysmall dataset.
