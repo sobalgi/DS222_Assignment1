@@ -26,24 +26,11 @@ from datetime import datetime
 from argparse import ArgumentParser
 parser = ArgumentParser()
 parser.add_argument('--dataset_size', default='verysmall',
-                    help='Size of dataset (full, small ,verysmall)')
-parser.add_argument('--dataset_path', default='../../ds222/assignment-1/DBPedia.',
+                    help='Size of dataset (full, small , verysmall)')
+parser.add_argument('--dataset_path', default='../../../ds222/assignment-1/DBPedia.',
                     help='Path to dataset folder without dataset size suffix')
 parser.add_argument('--out_prefix', default='final_',
                     help='Prefix to output filename')
-
-# parser.add_argument('--lr', type=float, default=0.01,
-#                     help='Learning Rate')
-# parser.add_argument('--decay', type=float, default=0.95,
-#                     help='Decay for Learning Rate')
-# parser.add_argument('--epochs', type=int, default=100,
-#                     help='Number of Epochs')
-# parser.add_argument('--save', default='save',
-#                     help='Model save directory.')
-# parser.add_argument('--debug', action='store_true',
-#                     help='Fast debugging mode.')
-# parser.add_argument('--hard_reload', action='store_true',
-#                     help='Pre-processing will be done from scratch.')
 args = parser.parse_args()
 
 datestring = datetime.strftime(datetime.now(), '%Y%m%d%H%M%S')  # to suffix output files for dates
@@ -62,11 +49,10 @@ out_prefix = args.out_prefix  # Prefix to output filename
 #with open("/home/sourabhbalgi/ds222/assignment-1/DBPedia.full/full_train.txt") as f:
 print(f'\nExtracting data from  "{dataset_path}{dataset_size}/{dataset_size}_train.txt" ...')
 with open(dataset_path + dataset_size + "/" + dataset_size + "_train.txt") as f:
-#with open("./in_map1.txt") as f:
-        raw_data = f.readlines()
+    raw_data = f.readlines()
 
-trn_label_full = [x.strip().split(' \t')[0].replace('\s*', '').split(',') for x in raw_data[0:]]  # first 3 lines are headers
-trn_data_full = [x.strip().split(' \t')[1] for x in raw_data[0:]]  # first 3 lines are headers
+trn_label_full = [x.strip().split(' \t')[0].replace('\s*', '').split(',') for x in raw_data[3:]]  # first 3 lines are headers
+trn_data_full = [x.strip().split(' \t')[1] for x in raw_data[3:]]  # first 3 lines are headers
 
 '''
 #with open("/home/sourabhbalgi/ds222/assignment-1/DBPedia.full/full_train.txt") as f:
@@ -107,9 +93,9 @@ for idx,label in enumerate(tqdm(one_hot.classes_)):
     dict_label2idx[label] = idx
     dict_idx2label[idx] = label
 
-#dict_label2idx['American_drama_films']  # 'American_drama_films' : 1
-#dict_idx2label[1]  # 1 : 'American_drama_films'
-#dict_idx2label
+dict_label2idx['American_drama_films']  # 'American_drama_films' : 1
+dict_idx2label[1]  # 1 : 'American_drama_films'
+dict_idx2label
 
 
 # In[ ]:
@@ -132,14 +118,17 @@ print(f'\nLog prior probabilities of classes : {log_prior_class_}')
 print(f'\nPreprocessing (stemming, stopword removal, tokenization) train data ...')
 
 # String preprocessing (stemming, stopword removal, tokenization)
-ps = PorterStemmer()  # Porter Stemmer from NLTK
+stemmer = PorterStemmer()  # Porter Stemmer from NLTK
+#stemmer = nltk.stem.SnowballStemmer('english')  # Snowball Stemmer from NLTK
+#stemmer = nltk.stem.lancaster.LancasterStemmer()  # Lancaster Stemmer from NLTK
 stop_words = set(stopwords.words('english'))  # remove stopwords in english
 
 tokenised_data_full = []
 # data preprocessing 
 for data in tqdm(trn_data_full):
     m = re.findall('".*"@en', data.lower())
-    data_str = re.sub('\\\\\w\d*', ' ', m[0])  # remove tags
+    #data_str = re.sub('\\\\\w\d*', ' ', m[0])  # remove tags
+    data_str = bytes(m[0], 'utf-8').decode("unicode_escape")
     data_str = re.sub('@en', '', data_str)  # remove end of sentence
     data_str = re.sub('[^a-zA-Z]', ' ', data_str)  # remove all punctuations, special-char and digits
     data_str = re.sub('\s+', ' ', data_str)  # replace multiple spaces
@@ -151,15 +140,10 @@ for data in tqdm(trn_data_full):
     words = word_tokenize(data_str)
 
     # remove stopwords
-    filtered_words = [w for w in words if not w in stop_words]
+    filtered_words = [stemmer.stem(w) for w in words if not w in stop_words]
+    #filtered_words = [w for w in words if not w in stop_words]
 
-    # stemming
-    stemmed_words = list()
-    for word in filtered_words:
-        stemmed_words.append(ps.stem(word))
-
-    tokenised_data_full.append(stemmed_words)
-
+    tokenised_data_full.append(filtered_words)
 
 # In[ ]:
 
@@ -186,6 +170,7 @@ big_doc_class = []
 word_counters = []
 total_words_class = []
 word_counters_json = {}
+total_num_params = 0
 print(f'\nBig-doc creation for each class to find word counts ...')
 for label_ix in tqdm(range(len(dict_label2idx))):
     doc_idx = np.where(labels_mat[:, label_ix])
@@ -198,8 +183,15 @@ for label_ix in tqdm(range(len(dict_label2idx))):
     
     # Create word counter for each class
     word_counters.append(Counter(big_doc_class[label_ix]))
+    total_num_params += word_counters[label_ix].__len__() + 1
     word_counters_json[dict_idx2label[label_ix]] = dict(word_counters[label_ix])
     total_words_class.append(np.sum(list(word_counters[label_ix].values())))
+
+print(f'Number of model parameters for {dataset_size} dataset = {total_num_params}.')
+
+
+ckpt1_time = time.time()
+print(f'{(ckpt1_time-start_time)//60} minutes, {int((ckpt1_time-start_time)%60)} seconds for complete training of {dataset_size} dataset.')
 
 # print(len(big_doc_class))
 # print(len(word_counters))
@@ -213,9 +205,9 @@ for label_ix in tqdm(range(len(dict_label2idx))):
 
 # Save JSON file with counts for each class
 #word_counters_json_enc = json.dumps(word_counters_json)
-with open(dataset_path + dataset_size + "/" + out_prefix + dataset_size + "_wordclass_counts.json", "w") as f:
+with open(out_prefix + dataset_size + "_wordclass_counts.json", "w") as f:
     f.write(json.dumps(word_counters_json))
-    print(f'\nSaved "{dataset_path}{dataset_size}/{out_prefix}{dataset_size}_wordclass_counts.json"')
+    print(f'\nSaved "{out_prefix}{dataset_size}_wordclass_counts.json"')
 
 # Store mappings as seperate JSON file
 mappings = {}
@@ -233,7 +225,6 @@ with open(out_prefix + dataset_size + "_mappings.json", "w") as f:
 
 
 # String preprocessing (stemming, stopword removal, tokenization)
-# ps = PorterStemmer()  # Porter Stemmer from NLTK
 
 print(f'\nCalculating accuracy on training data ...')
 trn_accuracy_count = 0
@@ -267,9 +258,13 @@ trn_accuracy = trn_accuracy_count / (trn_idx + 1)
 print(f'\nTraining Accuracy on {dataset_size} dataset : {trn_accuracy}')
 
 trn_predicted_label_df = pd.DataFrame(trn_predicted_label)
+#print(trn_predicted_label_df)
+
 trn_predicted_label_df.to_csv(out_prefix + dataset_size + "_dev_pred_labels.txt", ',', index=False)
 print(f'\nSaved predicted labels for training data in "{out_prefix}{dataset_size}_trn_pred_labels.txt"')
 
+ckpt2_time = time.time()
+print(f'{(ckpt2_time-ckpt1_time)//60} minutes, {int((ckpt2_time-ckpt1_time)%60)} seconds for complete training inference of {dataset_size} dataset.')
 
 # In[ ]:
 
@@ -280,7 +275,7 @@ with open(dataset_path + dataset_size + "/" + dataset_size + "_devel.txt") as f:
 #with open("/home/sourabhbalgi/ds222/assignment-1/DBPedia.small/small_devel.txt") as f:
     raw_data = f.readlines()
 
-dev_label_full = [x.strip().split(' \t')[0].replace('\s*','').split(',') for x in raw_data[3:]]  # first 3 lines are headers
+dev_label_full = [x.strip().split(' \t')[0].replace('\s*', '').split(',') for x in raw_data[3:]]  # first 3 lines are headers
 dev_data_full = [x.strip().split(' \t')[1] for x in raw_data[3:]]  # first 3 lines are headers
 
 '''
@@ -300,15 +295,14 @@ print(f'\nTotal number of development documents : {len(dev_label_full)}')
 
 
 # String preprocessing (stemming, stopword removal, tokenization)
-#ps = PorterStemmer()  # Porter Stemmer from NLTK
-
 print(f'\nPreprocessing (stemming, stopword removal, tokenization) development data ...')
 dev_accuracy_count = 0
 dev_predicted_label = []
 # data preprocessing 
-for dev_idx,data in enumerate(tqdm(dev_data_full)):
+for dev_idx, data in enumerate(tqdm(dev_data_full)):
     m = re.findall('".*"@en', data.lower())
-    data_str = re.sub('\\\\\w\d*', '', m[0])  # remove tags
+    #data_str = re.sub('\\\\\w\d*', '', m[0])  # remove tags
+    data_str = bytes(m[0], 'utf-8').decode("unicode_escape")
     data_str = re.sub('@en', '', data_str)  # remove end of sentence
     data_str = re.sub('[^a-zA-Z]', ' ', data_str)  # remove all punctuations, special-char and digits
     data_str = re.sub('\s+', ' ', data_str)  # replace multiple spaces
@@ -320,15 +314,11 @@ for dev_idx,data in enumerate(tqdm(dev_data_full)):
     words = word_tokenize(data_str)
 
     # remove stopwords
-    filtered_words = [w for w in words if not w in stop_words]
+    filtered_words = [stemmer.stem(w) for w in words if not w in stop_words]
+    #filtered_words = [w for w in words if not w in stop_words]
 
-    # stemming
-    stemmed_words = list()
-    for word in filtered_words:
-        stemmed_words.append(ps.stem(word))
-    
     # get the counts of words in test data
-    test_word_counts = Counter(stemmed_words)
+    test_word_counts = Counter(filtered_words)
 
     # reset posterior probabilities for the next test data
     log_post_prob = []
@@ -355,9 +345,13 @@ print(f'\nDevelopment Accuracy on {dataset_size} dataset : {dev_accuracy}')
 
 # Save predicted labels on development data
 dev_predicted_label_df = pd.DataFrame(dev_predicted_label)
+#print(dev_predicted_label_df)
+
 dev_predicted_label_df.to_csv(out_prefix + dataset_size + "_dev_pred_labels.txt", ',', index=False)
 print(f'\nSaved predicted labels for development data in "{out_prefix}{dataset_size}_dev_pred_labels.txt"')
 
+ckpt3_time = time.time()
+print(f'{(ckpt3_time-ckpt2_time)//60} minutes, {int((ckpt3_time-ckpt2_time)%60)} seconds for complete development inference of {dataset_size} dataset.')
 
 # In[ ]:
 
@@ -367,7 +361,7 @@ with open(dataset_path + dataset_size + "/" + dataset_size + "_test.txt") as f:
 #with open("/home/sourabhbalgi/ds222/assignment-1/DBPedia.small/small_test.txt") as f:
     raw_data = f.readlines()
 
-tst_label_full = [x.strip().split(' \t')[0].replace('\s*','').split(',') for x in raw_data[3:]]  # first 3 lines are headers
+tst_label_full = [x.strip().split(' \t')[0].replace('\s*', '').split(',') for x in raw_data[3:]]  # first 3 lines are headers
 tst_data_full = [x.strip().split(' \t')[1] for x in raw_data[3:]]  # first 3 lines are headers
 
 '''
@@ -387,15 +381,15 @@ print(f'\nTotal number of testing documents : {len(tst_label_full)}')
 
 
 # String preprocessing (stemming, stopword removal, tokenization)
-#ps = PorterStemmer()  # Porter Stemmer from NLTK
 print(f'\nPreprocessing (stemming, stopword removal, tokenization) test data ...')
 
 tst_accuracy_count = 0
 tst_predicted_label = []
 # data preprocessing 
-for tst_idx,data in enumerate(tqdm(tst_data_full)):
+for tst_idx, data in enumerate(tqdm(tst_data_full)):
     m = re.findall('".*"@en', data.lower())
-    data_str = re.sub('\\\\\w\d*', '', m[0])  # remove tags
+    #data_str = re.sub('\\\\\w\d*', '', m[0])  # remove tags
+    data_str = bytes(m[0], 'utf-8').decode("unicode_escape")
     data_str = re.sub('@en', '', data_str)  # remove end of sentence
     data_str = re.sub('[^a-zA-Z]', ' ', data_str)  # remove all punctuations, special-char and digits
     data_str = re.sub('\s+', ' ', data_str)  # replace multiple spaces
@@ -407,15 +401,11 @@ for tst_idx,data in enumerate(tqdm(tst_data_full)):
     words = word_tokenize(data_str)
 
     # remove stopwords
-    filtered_words = [w for w in words if not w in stop_words]
+    filtered_words = [stemmer.stem(w) for w in words if not w in stop_words]
+    #filtered_words = [w for w in words if not w in stop_words]
 
-    # stemming
-    stemmed_words = list()
-    for word in filtered_words:
-        stemmed_words.append(ps.stem(word))
-    
     # get the counts of words in test data
-    test_word_counts = Counter(stemmed_words)
+    test_word_counts = Counter(filtered_words)
 
     # reset posterior probabilities for the next test data
     log_post_prob = []
@@ -437,19 +427,24 @@ for tst_idx,data in enumerate(tqdm(tst_data_full)):
 tst_accuracy = tst_accuracy_count/(tst_idx+1)
 print(f'\nTest Accuracy on {dataset_size} dataset : {tst_accuracy}')
 
-
 # In[ ]:
-
 
 # Save predicted test labels
 tst_predicted_label_df = pd.DataFrame(tst_predicted_label)
+#print(tst_predicted_label_df)
+
 tst_predicted_label_df.to_csv(out_prefix + dataset_size + "_tst_pred_labels.txt", sep=',', index=False)
 print(f'\nSaved predicted labels for test data in "{out_prefix}{dataset_size}_tst_pred_labels.txt"')
 
+ckpt4_time = time.time()
+print(f'{(ckpt4_time-ckpt3_time)//60} minutes, {int((ckpt4_time-ckpt3_time)%60)} seconds for complete test inference of {dataset_size} dataset.')
+
 # Save prediction accuracies
-accuracy_df = pd.DataFrame({'Train' : [trn_accuracy], 'Development' : [dev_accuracy], 'Test' : [tst_accuracy]})
+accuracy_df = pd.DataFrame({'Train': [trn_accuracy], 'Development': [dev_accuracy], 'Test': [tst_accuracy]})
+print(accuracy_df.to_string(index=False))
+
 accuracy_df.to_csv(out_prefix + dataset_size + "_" +  datestring + "_accuracy.log", sep=',', index=False)
 print(f'\nSaved model accuracies for {dataset_size} in "{out_prefix}{dataset_size}_{datestring}_accuracy.log"')
 
 end_time = time.time()
-print(f'{(end_time-start_time)//60} minutes, {(end_time-start_time)%60} seconds for complete run')
+print(f'{(end_time-start_time)//60} minutes, {int((end_time-start_time)%60)} seconds for complete run of {dataset_size} dataset.')
