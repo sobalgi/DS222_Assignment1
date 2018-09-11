@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="dfcef1f4-778a-4f2d-9be2-e8cd17994ebe" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/part2_mapred/calc_accuracy.sh" beforeDir="false" afterPath="$PROJECT_DIR$/part2_mapred/calc_accuracy.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/part2_mapred/calc_accuracy_map.py" beforeDir="false" afterPath="$PROJECT_DIR$/part2_mapred/calc_accuracy_map.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/part2_mapred/calc_accuracy_red.py" beforeDir="false" afterPath="$PROJECT_DIR$/part2_mapred/calc_accuracy_red.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/part2_mapred/calc_postprob_map.py" beforeDir="false" afterPath="$PROJECT_DIR$/part2_mapred/calc_postprob_map.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/part2_mapred/calc_postprob_red.py" beforeDir="false" afterPath="$PROJECT_DIR$/part2_mapred/calc_postprob_red.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/part2_mapred/get_docwordcount_map.py" beforeDir="false" afterPath="$PROJECT_DIR$/part2_mapred/get_docwordcount_map.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/part2_mapred/get_docwordcount_red.py" beforeDir="false" afterPath="$PROJECT_DIR$/part2_mapred/get_docwordcount_red.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/part2_mapred/get_modelparams_red_n.py" beforeDir="false" afterPath="$PROJECT_DIR$/part2_mapred/get_modelparams_red_n.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/part2_mapred/modelparams.txt" beforeDir="false" afterPath="$PROJECT_DIR$/part2_mapred/modelparams.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/part2_mapred/modelparams_1.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/part2_mapred/modelparams_10.txt" beforeDir="false" afterPath="$PROJECT_DIR$/part2_mapred/modelparams_10.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/part2_mapred/modelparams_2.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/part2_mapred/modelparams_5.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/part2_mapred/modelparams_8.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/part2_mapred/training.sh" beforeDir="false" afterPath="$PROJECT_DIR$/part2_mapred/training.sh" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="calc_accuracy.sh" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/part2_mapred/calc_accuracy.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="23" selection-start-line="23" selection-end-line="23" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="get_modelparams_red_final.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/part2_mapred/get_modelparams_red_final.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="435">
+              <caret line="72" column="8" lean-forward="true" selection-start-line="72" selection-start-column="8" selection-end-line="72" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="training.sh" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/part2_mapred/training.sh">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="96">
+              <caret line="35" column="14" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/part2_mapred/get_docwordcount_red.py" />
+        <option value="$PROJECT_DIR$/part2_mapred/training.sh" />
+        <option value="$PROJECT_DIR$/part2_mapred/calc_accuracy.sh" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths />
+  </component>
+  <component name="ProjectFrameBounds" extendedState="4">
+    <option name="x" value="799" />
+    <option name="width" value="801" />
+    <option name="height" value="873" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="DS222_Assignment1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DS222_Assignment1" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DS222_Assignment1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DS222_Assignment1" type="462c0819:PsiDirectoryNode" />
+              <item name="part2_mapred" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="calc_accuracy.sh" type="BashConfigurationType" factoryName="Bash" temporary="true">
+      <module name="DS222_Assignment1" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="INTERPRETER_PATH" value="/bin/bash" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/part2_mapred" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/part2_mapred/calc_accuracy.sh" />
+      <option name="PARAMETERS" value="1 devel" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Bash.calc_accuracy.sh" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="dfcef1f4-778a-4f2d-9be2-e8cd17994ebe" name="Default" comment="" />
+      <created>1536670328413</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1536670328413</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="799" y="0" width="801" height="873" extended-state="4" />
+    <editor active="true" />
+    <layout>
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Python Console" order="7" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32977304" />
+      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.30779392" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="right" id="SciView" order="3" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/part2_mapred/calc_accuracy.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1005">
+          <caret line="67" column="18" lean-forward="true" selection-start-line="67" selection-start-column="18" selection-end-line="67" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/part2_mapred/training.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="825">
+          <caret line="55" column="21" lean-forward="true" selection-start-line="55" selection-start-column="21" selection-end-line="55" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/part2_mapred/get_docwordcount_map.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-391" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/part2_mapred/get_docwordcount_red.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="553">
+          <caret line="48" selection-start-line="48" selection-end-line="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/part2_mapred/get_modelparams_red_final.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="72" column="8" lean-forward="true" selection-start-line="72" selection-start-column="8" selection-end-line="72" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/part2_mapred/training.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="96">
+          <caret line="35" column="14" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/part2_mapred/calc_accuracy.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

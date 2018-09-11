@@ -12,6 +12,8 @@ prior_prob_dict = {}
 UNK_cond_prob_dict = {}
 word_cond_prob_dict = {}
 
+doc_id_list = []
+
 # #uncomment to use dummy test file
 # #read from test file
 # with open("devel_postprob_man.txt") as f:  # out_calc_postprob_map
@@ -33,17 +35,18 @@ for line in sys.stdin:
 
     if len(key_tokens) == 2:  # processing from modelparams.txt
         entity_key, label_key = key.split(' ', 1)
-        if entity_key == '--prior':
+        if entity_key == '01prior':
             prior_prob_dict[label_key] = float(val)  # add to prior dictionary
             if prior_prob_dict[label_key] >= 0:
                 raise ValueError
-            print('--prior %s\t%f' %(label_key, prior_prob_dict[label_key]))
+            #print('01prior %s\t%f' %(label_key, prior_prob_dict[label_key]))
 
-        elif entity_key == '-UNK':
+        elif entity_key == '-UNK-':
             UNK_cond_prob_dict[label_key] = float(val)  # add to conditional dictionary for UNK words
             if UNK_cond_prob_dict[label_key] >= 0:
                 raise ValueError
         else:
+            #print('%s'%line.strip())
             if float(val) >= 0:
                 raise ValueError
 
@@ -66,13 +69,18 @@ for line in sys.stdin:
         original_labels = val_tokens[1]
 
         for dict_label, dict_value in word_cond_prob_dict.items():
-            print('%s %s\t%f %s' % (current_doc_id, dict_label, dict_value * int(current_count),
-                                    original_labels))  # emit key-val for each class to find the class counts
-
+            print('%s %s\t%f %s' % (current_doc_id, dict_label, dict_value * int(current_count), original_labels))  # emit key-val for each class to find the class counts
+        
+        if current_doc_id not in doc_id_list:
+            doc_id_list.append(current_doc_id)
+            
+            for dict_label, dict_value in prior_prob_dict.items():
+                print('%s %s\t%f %s' % (current_doc_id, dict_label, dict_value , original_labels))  # emit key-val for each class to find the class counts
+            
+            
         previous_word = current_word
 
     else:
-        pass
-        # raise (IndexError)
+        raise IndexError
 
 

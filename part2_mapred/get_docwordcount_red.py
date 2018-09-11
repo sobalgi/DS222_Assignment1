@@ -40,16 +40,12 @@ for line in sys.stdin:
         doc_word_count += int(count_)  # increment the label count
     elif current_doc_id == previous_doc_id and not (current_word == previous_word):
         if previous_word:
-            print('%s ~00_dummy_lbl %d\t%s %s'%(previous_word, doc_word_count, previous_doc_id, previous_classlabels))  # emit key-val for each class to find the class counts
-            # for previous_classlabel in previous_classlabels.split(','):
-            #     print('%s %s %d\t%s'%(previous_word, previous_classlabel, doc_word_count, current_doc_id)) # emit key-val for each class to find the class counts
+            print('%s ~00_dummy_lbl %d\t%s %s'%(previous_word, doc_word_count, previous_doc_id, previous_classlabels))
         doc_word_count = int(count_)
         previous_word = current_word
     else:
         if previous_word:
-            print('%s ~00_dummy_lbl %d\t%s %s'%(previous_word, doc_word_count, previous_doc_id, previous_classlabels))  # emit key-val for each class to find the class counts
-            # for previous_classlabel in previous_classlabels.split(','):
-            #     print('%s %s %d\t%s'%(previous_word, previous_classlabel, doc_word_count, current_doc_id))  # emit key-val for each class to find the class counts
+            print('%s ~00_dummy_lbl %d\t%s %s'%(previous_word, doc_word_count, previous_doc_id, previous_classlabels))
         doc_word_count = int(count_)
         previous_doc_id = current_doc_id
         previous_word = current_word

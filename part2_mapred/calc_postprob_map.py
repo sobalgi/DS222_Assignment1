@@ -13,5 +13,28 @@ import sys
 # input comes from STDIN (standard input)
 for line in sys.stdin:
 
-    # Read Mapreduce1 output
-    print('%s'%line.strip())
+    
+    try:
+        key, val = line.strip().split('\t', 1)
+    except ValueError:
+        continue
+
+    key_tokens = key.split(' ')
+
+    if len(key_tokens) == 2:  # processing from modelparams.txt
+        print('%s'%line.strip())
+
+    elif len(key_tokens) == 3:
+        
+        if key_tokens[2] == '-UNK-':
+            
+            print('-UNK- %s\t%s'%(key_tokens[1], val))
+
+        else:
+            if key_tokens[1] == '~00_dummy_lbl':
+
+                print('%s'%line.strip())
+            else:
+                print('%s %s\t%s'%(key_tokens[2], key_tokens[1], val))
+
+

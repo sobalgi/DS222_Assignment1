@@ -62,7 +62,7 @@ echo -e "\n>>> Combined outputs from get_modelparams_mapred into single file ./m
 
 # get model param details
 cat modelparams_$1.txt | grep '_vocablen'
-cat modelparams_$1.txt | grep '_vocab' -c
+cat modelparams_$1.txt | grep '_vocab ' -c
 cat modelparams_$1.txt | grep '01prior' -c
 cat modelparams_$1.txt | grep '\-UNK\-' -c
 cat modelparams_$1.txt | grep '02cond' -c
