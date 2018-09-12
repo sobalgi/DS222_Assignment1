@@ -3,6 +3,7 @@ Naive Bayes classifier implementation for DBPedia dataset with 50 classes
 
 ** Installation
 Simply clone this repository via
+
 #+BEGIN_SRC sh
   git clone https://github.com/sobalgi/DS222_Assignment1.git
 #+END_SRC
@@ -11,14 +12,6 @@ Simply clone this repository via
 - Python 3 with NumPy
 - NLTK (to remove stopwords and lemmatize data.)
 - Hadoop Streaming
-
-This will generate the transitive closure of the full noun hierarchy as well as of the mammals subtree of WordNet. 
-
-To embed the mammals subtree in the reconstruction setting (i.e., without missing data), go to the /root directory/ of the project and run
-#+BEGIN_SRC sh
-  NTHREADS=2 ./train-mammals.sh
-#+END_SRC
-This shell script includes the appropriate parameter settings for the mammals subtree and saves the trained model as =mammals.pth=. 
 
 This consists of 2 parts each included in separate folder after latest code refactoring.
 
@@ -44,10 +37,6 @@ where NumReducers indicates the number of reducers to be used for the job like 1
 DataSplit is the name of the Datasplit to be used for inference and accuracy like 'train, devel or test'
 
 Note : please modify the input directory path in the .sh files to point to the right directory with the train, development and test data files.
-
-
-** Example: Embedding WordNet Mammals
-To reproduce the results or evaluate the mapreduce implementation, execute the following commands.
 
 #+BEGIN_SRC sh
   ./training.sh 10  # for training only. Model parameters are obtained here.
