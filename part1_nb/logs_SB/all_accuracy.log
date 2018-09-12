@@ -1,0 +1,24 @@
+4.0 minutes, 14 seconds for complete training of full dataset.
+Training Accuracy on full dataset : 0.8504144301701443
+19.0 minutes, 40 seconds for complete training inference of full dataset.
+Development Accuracy on full dataset : 0.7309168374150323
+5.0 minutes, 18 seconds for complete development inference of full dataset.
+Test Accuracy on full dataset : 0.7338801093552044
+2.0 minutes, 20 seconds for complete test inference of full dataset.
+31.0 minutes, 34 seconds for complete run of full dataset.
+0.0 minutes, 42 seconds for complete training of small dataset.
+Training Accuracy on small dataset : 0.8398342620374339
+3.0 minutes, 2 seconds for complete training inference of small dataset.
+Development Accuracy on small dataset : 0.6738369184592297
+0.0 minutes, 53 seconds for complete development inference of small dataset.
+Test Accuracy on small dataset : 0.6873540206873541
+0.0 minutes, 25 seconds for complete test inference of small dataset.
+5.0 minutes, 3 seconds for complete run of small dataset.
+0.0 minutes, 20 seconds for complete training of verysmall dataset.
+Training Accuracy on verysmall dataset : 0.8671048871106031
+1.0 minutes, 42 seconds for complete training inference of verysmall dataset.
+Development Accuracy on verysmall dataset : 0.674341007674341
+0.0 minutes, 30 seconds for complete development inference of verysmall dataset.
+Test Accuracy on verysmall dataset : 0.5998663994655978
+0.0 minutes, 12 seconds for complete test inference of verysmall dataset.
+2.0 minutes, 45 seconds for complete run of verysmall dataset.

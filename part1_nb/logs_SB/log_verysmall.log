@@ -5,11 +5,11 @@
 [nltk_data]     /home/sourabhbalgi/nltk_data...
 [nltk_data]   Package punkt is already up-to-date!
 
-Extracting data from  "../../../ds222/assignment-1/DBPedia.small/small_train.txt" ...
+Extracting data from  "../../../ds222/assignment-1/DBPedia.verysmall/verysmall_train.txt" ...
 
-Total number of training documents : 21497
+Total number of training documents : 10497
 
-Shape of one-hot-encoded labels : (21497, 49)
+Shape of one-hot-encoded labels : (10497, 49)
 
 List of classes : ['American_comedy_films' 'American_drama_films' 'American_film_actresses'
  'American_film_directors' 'American_films' 'American_male_film_actors'
@@ -39,60 +39,60 @@ Creating Mappings for labels ...
 
 Calculating prior probabilities ...
 
-Log prior probabilities of classes : [-4.84826527 -4.45839226 -3.02059034 -4.03219125 -2.92306232 -2.74279415
- -2.89694483 -3.39171302 -3.17428884 -3.10846554 -2.53685845 -5.2729003
- -4.81099388 -5.47213833 -4.88260341 -5.74161444 -6.65276377 -3.64302745
- -6.42450512 -4.17644086 -3.87378525 -3.26620289 -3.37804093 -2.36970785
- -6.42450512 -3.16171006 -6.38449978 -4.41096357 -3.15470341 -4.98844925
- -6.67873926 -3.37223821 -3.19507296 -6.48768402 -6.22198085 -7.05822888
- -5.81651574 -6.85058951 -4.75949735 -4.39206962 -7.60827521 -7.60827521
- -5.7012049  -5.14017568 -4.04533698 -9.21771313 -7.54373669 -3.78108414
- -4.02105941]
+Log prior probabilities of classes : [-4.99856271 -4.26139865 -3.03706047 -3.8671606  -2.80022764 -2.73056906
+ -2.95864193 -3.40932751 -3.06126094 -3.20347545 -2.12952809 -7.40650832
+ -5.7535853  -6.46823868 -5.91485344 -7.99429499 -7.20583763 -3.37917447
+ -8.21743854 -4.22845449 -3.82608058 -3.09198757 -3.54694889 -2.3306403
+ -6.51269045 -3.1391446  -6.55921046 -5.34105302 -2.99438366 -5.00861305
+ -7.03878354 -3.2883749  -3.27579612 -7.20583763 -6.77051955 -7.30114781
+ -5.7119126  -8.50512061 -6.96467557 -4.90325253 -7.99429499 -8.91058572
+ -6.96467557 -6.04838484 -5.11509653 -9.6037329  -8.50512061 -4.05855545
+ -4.12309398]
 
 Preprocessing (stemming, stopword removal, tokenization) train data ...
 
 Creating mappings for vocabulary ...
 
-Length of vocabulary : 60961
+Length of vocabulary : 43636
 
 Big-doc creation for each class to find word counts ...
-Number of model parameters for small dataset = 281107.
-0.0 minutes, 45 seconds for complete training of small dataset.
+Number of model parameters for verysmall dataset = 192930.
+0.0 minutes, 20 seconds for complete training of verysmall dataset.
 
-Saved "final_small_wordclass_counts.json"
+Saved "final_verysmall_wordclass_counts.json"
 
-Saved "final_small_mappings.json"
+Saved "final_verysmall_mappings.json"
 
 Calculating accuracy on training data ...
 
-Training Accuracy on small dataset : 0.8381634646694888
+Training Accuracy on verysmall dataset : 0.8671048871106031
 
-Saved predicted labels for training data in "final_small_trn_pred_labels.txt"
-2.0 minutes, 34 seconds for complete training inference of small dataset.
+Saved predicted labels for training data in "final_verysmall_trn_pred_labels.txt"
+1.0 minutes, 42 seconds for complete training inference of verysmall dataset.
 
 Extracting data from development set ...
 
-Total number of development documents : 5997
+Total number of development documents : 2997
 
 Preprocessing (stemming, stopword removal, tokenization) development data ...
 
-Development Accuracy on small dataset : 0.8515924628981157
+Development Accuracy on verysmall dataset : 0.674341007674341
 
-Saved predicted labels for development data in "final_small_dev_pred_labels.txt"
-1.0 minutes, 11 seconds for complete development inference of small dataset.
+Saved predicted labels for development data in "final_verysmall_dev_pred_labels.txt"
+0.0 minutes, 30 seconds for complete development inference of verysmall dataset.
 
 Extracting data from test set ...
 
-Total number of testing documents : 2497
+Total number of testing documents : 1497
 
 Preprocessing (stemming, stopword removal, tokenization) test data ...
 
-Test Accuracy on small dataset : 0.8494193031637965
+Test Accuracy on verysmall dataset : 0.5998663994655978
 
-Saved predicted labels for test data in "final_small_tst_pred_labels.txt"
-0.0 minutes, 35 seconds for complete test inference of small dataset.
+Saved predicted labels for test data in "final_verysmall_tst_pred_labels.txt"
+0.0 minutes, 12 seconds for complete test inference of verysmall dataset.
 Train  Development      Test
-0.838163     0.851592  0.849419
+0.867105     0.674341  0.599866
 
-Saved model accuracies for small in "final_small_20180910040012_accuracy.log"
-5.0 minutes, 6 seconds for complete run of small dataset.
+Saved model accuracies for verysmall in "final_verysmall_20180912194431_accuracy.log"
+2.0 minutes, 45 seconds for complete run of verysmall dataset.

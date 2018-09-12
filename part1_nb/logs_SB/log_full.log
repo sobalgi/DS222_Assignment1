@@ -54,11 +54,11 @@ Preprocessing (stemming, stopword removal, tokenization) train data ...
 
 Creating mappings for vocabulary ...
 
-Length of vocabulary : 220836
+Length of vocabulary : 221040
 
 Big-doc creation for each class to find word counts ...
-Number of model parameters for full dataset = 877219.
-5.0 minutes, 21 seconds for complete training of full dataset.
+Number of model parameters for full dataset = 875069.
+4.0 minutes, 14 seconds for complete training of full dataset.
 
 Saved "final_full_wordclass_counts.json"
 
@@ -66,10 +66,10 @@ Saved "final_full_mappings.json"
 
 Calculating accuracy on training data ...
 
-Training Accuracy on full dataset : 0.850344660781231
+Training Accuracy on full dataset : 0.8504144301701443
 
 Saved predicted labels for training data in "final_full_trn_pred_labels.txt"
-20.0 minutes, 25 seconds for complete training inference of full dataset.
+19.0 minutes, 40 seconds for complete training inference of full dataset.
 
 Extracting data from development set ...
 
@@ -77,10 +77,10 @@ Total number of development documents : 61494
 
 Preprocessing (stemming, stopword removal, tokenization) development data ...
 
-Development Accuracy on full dataset : 0.7304452466907341
+Development Accuracy on full dataset : 0.7309168374150323
 
 Saved predicted labels for development data in "final_full_dev_pred_labels.txt"
-5.0 minutes, 37 seconds for complete development inference of full dataset.
+5.0 minutes, 18 seconds for complete development inference of full dataset.
 
 Extracting data from test set ...
 
@@ -88,12 +88,12 @@ Total number of testing documents : 29994
 
 Preprocessing (stemming, stopword removal, tokenization) test data ...
 
-Test Accuracy on full dataset : 0.7342135093685404
+Test Accuracy on full dataset : 0.7338801093552044
 
 Saved predicted labels for test data in "final_full_tst_pred_labels.txt"
-2.0 minutes, 29 seconds for complete test inference of full dataset.
-Train  Development      Test
-0.850345     0.730445  0.734214
+2.0 minutes, 20 seconds for complete test inference of full dataset.
+Train  Development     Test
+0.850414     0.730917  0.73388
 
-Saved model accuracies for full in "final_full_20180910040520_accuracy.log"
-33.0 minutes, 53 seconds for complete run of full dataset.
+Saved model accuracies for full in "final_full_20180912195223_accuracy.log"
+31.0 minutes, 34 seconds for complete run of full dataset.

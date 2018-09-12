@@ -1,0 +1,98 @@
+[nltk_data] Downloading package stopwords to
+[nltk_data]     /home/sourabhbalgi/nltk_data...
+[nltk_data]   Package stopwords is already up-to-date!
+[nltk_data] Downloading package punkt to
+[nltk_data]     /home/sourabhbalgi/nltk_data...
+[nltk_data]   Package punkt is already up-to-date!
+
+Extracting data from  "../../../ds222/assignment-1/DBPedia.small/small_train.txt" ...
+
+Total number of training documents : 20997
+
+Shape of one-hot-encoded labels : (20997, 49)
+
+List of classes : ['American_comedy_films' 'American_drama_films' 'American_film_actresses'
+ 'American_film_directors' 'American_films' 'American_male_film_actors'
+ 'American_male_television_actors'
+ 'American_military_personnel_of_World_War_II'
+ 'American_people_of_Irish_descent' 'American_television_actresses'
+ 'Articles_containing_video_clips' 'Association_football_defenders'
+ 'Association_football_forwards' 'Association_football_goalkeepers'
+ 'Association_football_midfielders' 'Asteroids_named_for_people'
+ 'Australian_rules_footballers_from_Victoria_(Australia)'
+ 'Black-and-white_films' 'Brazilian_footballers' 'British_films'
+ 'Columbia_University_alumni' 'Deaths_from_myocardial_infarction'
+ 'English-language_albums' 'English-language_films'
+ 'English-language_journals' 'English-language_television_programming'
+ 'English_cricketers' 'English_footballers' 'Fellows_of_the_Royal_Society'
+ 'French_films' 'German_footballers' 'Guggenheim_Fellows'
+ 'Harvard_University_alumni' 'Hindi-language_films' 'Indian_films'
+ 'Insects_of_Europe' 'Italian_films' 'Italian_footballers'
+ 'Main_Belt_asteroids' 'Major_League_Baseball_pitchers'
+ 'Rivers_of_Romania' 'Russian_footballers' 'Scottish_footballers'
+ 'Serie_A_players' 'The_Football_League_players' 'Villages_in_Turkey'
+ 'Villages_in_the_Czech_Republic' 'Windows_games' 'Yale_University_alumni']
+
+Total number of classes : 49
+
+Creating Mappings for labels ...
+
+Calculating prior probabilities ...
+
+Log prior probabilities of classes : [-4.87414503 -4.49115278 -3.01230686 -4.04220256 -2.93780433 -2.74432728
+ -2.89944691 -3.38449216 -3.16335462 -3.10410113 -2.51749272 -5.31351169
+ -4.81797476 -5.51956081 -4.91034808 -5.72589724 -6.62668379 -3.66220406
+ -6.44009783 -4.18768684 -3.86862317 -3.26115787 -3.37750261 -2.38480378
+ -6.39842514 -3.14979239 -6.41904442 -4.44092065 -3.13954398 -4.98694053
+ -6.67932752 -3.36957393 -3.18527998 -6.48358294 -6.21270799 -7.0321489
+ -5.81290862 -6.88904805 -4.74116935 -4.37944879 -7.58219523 -7.6511881
+ -5.72589724 -5.13695384 -4.08770992 -9.19163314 -7.51765671 -3.77553274
+ -4.00424734]
+
+Preprocessing (stemming, stopword removal, tokenization) train data ...
+
+Creating mappings for vocabulary ...
+
+Length of vocabulary : 50504
+
+Big-doc creation for each class to find word counts ...
+Number of model parameters for small dataset = 241644.
+0.0 minutes, 45 seconds for complete training of small dataset.
+
+Saved "final_small_wordclass_counts.json"
+
+Saved "final_small_mappings.json"
+
+Calculating accuracy on training data ...
+
+Training Accuracy on small dataset : 0.8312616088012573
+
+Saved predicted labels for training data in "final_small_trn_pred_labels.txt"
+2.0 minutes, 51 seconds for complete training inference of small dataset.
+
+Extracting data from development set ...
+
+Total number of development documents : 5997
+
+Preprocessing (stemming, stopword removal, tokenization) development data ...
+
+Development Accuracy on small dataset : 0.671669167917292
+
+Saved predicted labels for development data in "final_small_dev_pred_labels.txt"
+0.0 minutes, 48 seconds for complete development inference of small dataset.
+
+Extracting data from test set ...
+
+Total number of testing documents : 2997
+
+Preprocessing (stemming, stopword removal, tokenization) test data ...
+
+Test Accuracy on small dataset : 0.6800133466800133
+
+Saved predicted labels for test data in "final_small_tst_pred_labels.txt"
+0.0 minutes, 24 seconds for complete test inference of small dataset.
+Train  Development      Test
+0.831262     0.671669  0.680013
+
+Saved model accuracies for small in "final_small_20180912203257_accuracy.log"
+4.0 minutes, 50 seconds for complete run of small dataset.

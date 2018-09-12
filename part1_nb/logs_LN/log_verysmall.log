@@ -39,25 +39,25 @@ Creating Mappings for labels ...
 
 Calculating prior probabilities ...
 
-Log prior probabilities of classes : [-4.99849523 -4.26133117 -3.03699299 -3.86387251 -2.80016016 -2.73153732
- -2.96117862 -3.40926003 -3.06119346 -3.20340797 -2.12832618 -7.40644084
- -5.75351782 -6.4681712  -5.91478597 -7.99422751 -7.20577015 -3.37910699
- -8.21737106 -4.22838701 -3.8260131  -3.09192009 -3.54688141 -2.33057282
- -6.51262297 -3.13907712 -6.55914298 -5.34098554 -2.99431618 -5.00854557
- -7.03871606 -3.29011737 -3.27572864 -7.20577015 -6.77045208 -7.30108033
- -5.71184512 -8.50505313 -6.96460809 -4.90318505 -7.99422751 -8.91051824
- -6.96460809 -6.04831736 -5.11502905 -9.60366542 -8.50505313 -4.05848798
- -4.1230265 ]
+Log prior probabilities of classes : [-4.99856271 -4.26139865 -3.03706047 -3.8671606  -2.80022764 -2.73056906
+ -2.95864193 -3.40932751 -3.06126094 -3.20347545 -2.12952809 -7.40650832
+ -5.7535853  -6.46823868 -5.91485344 -7.99429499 -7.20583763 -3.37917447
+ -8.21743854 -4.22845449 -3.82608058 -3.09198757 -3.54694889 -2.3306403
+ -6.51269045 -3.1391446  -6.55921046 -5.34105302 -2.99438366 -5.00861305
+ -7.03878354 -3.2883749  -3.27579612 -7.20583763 -6.77051955 -7.30114781
+ -5.7119126  -8.50512061 -6.96467557 -4.90325253 -7.99429499 -8.91058572
+ -6.96467557 -6.04838484 -5.11509653 -9.6037329  -8.50512061 -4.05855545
+ -4.12309398]
 
 Preprocessing (stemming, stopword removal, tokenization) train data ...
 
 Creating mappings for vocabulary ...
 
-Length of vocabulary : 43721
+Length of vocabulary : 36513
 
 Big-doc creation for each class to find word counts ...
-Number of model parameters for verysmall dataset = 193707.
-0.0 minutes, 30 seconds for complete training of verysmall dataset.
+Number of model parameters for verysmall dataset = 169234.
+0.0 minutes, 26 seconds for complete training of verysmall dataset.
 
 Saved "final_verysmall_wordclass_counts.json"
 
@@ -65,10 +65,10 @@ Saved "final_verysmall_mappings.json"
 
 Calculating accuracy on training data ...
 
-Training Accuracy on verysmall dataset : 0.8673906830523006
+Training Accuracy on verysmall dataset : 0.8595789273125655
 
 Saved predicted labels for training data in "final_verysmall_trn_pred_labels.txt"
-1.0 minutes, 38 seconds for complete training inference of verysmall dataset.
+1.0 minutes, 40 seconds for complete training inference of verysmall dataset.
 
 Extracting data from development set ...
 
@@ -76,10 +76,10 @@ Total number of development documents : 2997
 
 Preprocessing (stemming, stopword removal, tokenization) development data ...
 
-Development Accuracy on verysmall dataset : 0.8762095428762096
+Development Accuracy on verysmall dataset : 0.6690023356690024
 
 Saved predicted labels for development data in "final_verysmall_dev_pred_labels.txt"
-0.0 minutes, 46 seconds for complete development inference of verysmall dataset.
+0.0 minutes, 30 seconds for complete development inference of verysmall dataset.
 
 Extracting data from test set ...
 
@@ -87,12 +87,12 @@ Total number of testing documents : 1497
 
 Preprocessing (stemming, stopword removal, tokenization) test data ...
 
-Test Accuracy on verysmall dataset : 0.8610554442217769
+Test Accuracy on verysmall dataset : 0.5918503674014696
 
 Saved predicted labels for test data in "final_verysmall_tst_pred_labels.txt"
-0.0 minutes, 24 seconds for complete test inference of verysmall dataset.
-Train  Development      Test
-0.867391      0.87621  0.861055
+0.0 minutes, 14 seconds for complete test inference of verysmall dataset.
+Train  Development     Test
+0.859579     0.669002  0.59185
 
-Saved model accuracies for verysmall in "final_verysmall_20180910035650_accuracy.log"
-3.0 minutes, 20 seconds for complete run of verysmall dataset.
+Saved model accuracies for verysmall in "final_verysmall_20180912203004_accuracy.log"
+2.0 minutes, 50 seconds for complete run of verysmall dataset.
